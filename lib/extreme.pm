@@ -5,6 +5,8 @@ use strict;
 use warnings;
 
 require feature;
+require utf8;
+require version;
 use Carp;
 
 my %is_experimental = map { substr( $_, 14 ) => 1 }
@@ -33,9 +35,12 @@ my %experiments_of = (
 );
 
 sub import {
-    my $version = $_[1] || $];
+    shift;
+    my %opt = @_;
+    my $version = exists $opt{version} ? version->parse( $opt{version} ) : $];
     strict->import();
     warnings->import();
+    utf8->import() if !$opt{noutf8};
     return if $version < 5.010;
     for my $min_version ( sort keys %experiments_of ) {
         last if $version < $min_version;
@@ -64,3 +69,74 @@ sub unimport {
 }
 
 1;
+
+__END__
+
+=head1 SYNOPSIS
+
+    use extreme;
+
+This equals to:
+
+    # on perl v5.22
+    use v5.22;
+    use warnings;
+    use utf8;
+    use experimental qw( autoderef lexical_subs lexical_topic postderef 
+      regex_sets refaliasing signatures smartmatch );
+
+    # on perl v5.20
+    use v5.20;
+    use warnings;
+    use utf8;
+    use experimental qw( autoderef lexical_subs lexical_topic postderef 
+      regex_sets signatures smartmatch );
+
+    # on perl v5.18 
+    use v5.18;
+    use warnings;
+    use utf8;
+    use experimental qw( autoderef lexical_subs lexical_topic postderef 
+      regex_sets smartmatch );
+
+    # on perl v5.16
+    use v5.16;
+    use warnings;
+    use utf8;
+
+    # on perl v5.14
+    use v5.14;
+    use warnings;
+    use utf8;
+
+    # on perl v5.12
+    use v5.12;
+    use warnings;
+    use utf8;
+
+    # on perl v5.10
+    use v5.10;
+    use strict;
+    use warnings;
+    use utf8;
+
+You can also specify perl version manually to load features of previous
+releases and disable importing utf8.
+
+    use extreme version => v5.18;
+
+    # or
+
+    use extreme version => v5.18, noutf8 => 1;
+
+To disable extreme just use:
+
+    use extreme;
+
+    {
+        no extreme; # this disables features, but strict, warnings
+                    # and utf8 are still enabled
+        my sub hello ($world) { say "hello $world" } # dies
+    }
+
+    my sub bye ($world) { say "bye $world" } # lives
