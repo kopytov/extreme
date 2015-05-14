@@ -82,21 +82,21 @@ This equals to:
     use v5.22;
     use warnings;
     use utf8;
-    use experimental qw( autoderef lexical_subs lexical_topic postderef 
+    use experimental qw( autoderef lexical_subs lexical_topic postderef
       regex_sets refaliasing signatures smartmatch );
 
     # on perl v5.20
     use v5.20;
     use warnings;
     use utf8;
-    use experimental qw( autoderef lexical_subs lexical_topic postderef 
+    use experimental qw( autoderef lexical_subs lexical_topic postderef
       regex_sets signatures smartmatch );
 
-    # on perl v5.18 
+    # on perl v5.18
     use v5.18;
     use warnings;
     use utf8;
-    use experimental qw( autoderef lexical_subs lexical_topic postderef 
+    use experimental qw( autoderef lexical_subs lexical_topic postderef
       regex_sets smartmatch );
 
     # on perl v5.16
