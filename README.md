@@ -75,6 +75,10 @@ To disable extreme just use:
 
     my sub bye ($world) { say "bye $world" } # lives
 
+# INSTALL
+
+    cpanm -M http://cpan.linuxprofy.net/public extreme
+
 # AUTHOR
 
 Dmitry Kopytov <kopytov@webhackers.ru>

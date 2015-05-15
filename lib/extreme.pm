@@ -72,6 +72,10 @@ sub unimport {
 
 __END__
 
+=head1 INSTALL
+
+    cpanm -M http://cpan.linuxprofy.net/public extreme
+
 =head1 SYNOPSIS
 
     use extreme;
