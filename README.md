@@ -77,7 +77,7 @@ To disable extreme just use:
 
 # INSTALL
 
-    cpanm -M http://cpan.linuxprofy.net/public extreme
+    cpanm -M http://cpan.fozzy.com/public extreme
 
 # AUTHOR
 
