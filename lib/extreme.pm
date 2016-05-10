@@ -24,14 +24,14 @@ my @enabled_experimentals = ();
 my @enabled_features      = ();
 
 my %experiments_of = (
-    5      => [qw( array_base )],
-    5.010  => [qw( lexical_topic say smartmatch state switch )],
-    5.012  => [qw( unicode_strings )],
-    5.014  => [qw( autoderef )],
-    5.016  => [qw( current_sub evalbytes fc unicode_eval )],
-    5.018  => [qw( lexical_subs regex_sets )],
-    5.020  => [qw( postderef postderef_qq signatures )],
-    5.0215 => [qw( refaliasing )],
+    5     => [qw( array_base )],
+    5.010 => [qw( lexical_topic say smartmatch state switch )],
+    5.012 => [qw( unicode_strings )],
+    5.014 => [qw( autoderef )],
+    5.016 => [qw( current_sub evalbytes fc unicode_eval )],
+    5.018 => [qw( lexical_subs regex_sets )],
+    5.020 => [qw( postderef postderef_qq signatures )],
+    5.022 => [qw( bitwise refaliasing )],
 );
 
 sub import {
