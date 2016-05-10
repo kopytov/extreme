@@ -4,7 +4,7 @@ extreme - enables all stable & experimental features
 
 # VERSION
 
-version 0.001
+version 0.002
 
 # SYNOPSIS
 
@@ -12,12 +12,19 @@ version 0.001
 
 This equals to:
 
+    # on perl v5.24
+    use v5.24;
+    use warnings;
+    use utf8;
+    use experimental qw( bitwise lexical_subs regex_sets refaliasing
+      signatures smartmatch );
+
     # on perl v5.22
     use v5.22;
     use warnings;
     use utf8;
-    use experimental qw( autoderef lexical_subs lexical_topic postderef
-      regex_sets refaliasing signatures smartmatch );
+    use experimental qw( autoderef bitwise lexical_subs lexical_topic
+      postderef regex_sets refaliasing signatures smartmatch );
 
     # on perl v5.20
     use v5.20;
@@ -89,3 +96,17 @@ This software is copyright (c) 2015 by Dmitry Kopytov.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
+
+# BUGS
+
+Please report any bugs or feature requests on the bugtracker website
+https://github.com/kopytov/extreme/issues
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
+
+# SOURCE
+
+The development version is on github at [http://github.com/kopytov/extreme](http://github.com/kopytov/extreme)
+and may be cloned from [git://github.com/kopytov/extreme.git](git://github.com/kopytov/extreme.git)

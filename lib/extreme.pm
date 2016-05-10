@@ -74,7 +74,7 @@ __END__
 
 =head1 INSTALL
 
-    cpanm -M http://cpan.linuxprofy.net/public extreme
+    cpanm -M http://cpan.fozzy.com/public extreme
 
 =head1 SYNOPSIS
 
@@ -82,12 +82,19 @@ __END__
 
 This equals to:
 
+    # on perl v5.24
+    use v5.24;
+    use warnings;
+    use utf8;
+    use experimental qw( bitwise lexical_subs regex_sets refaliasing
+      signatures smartmatch );
+
     # on perl v5.22
     use v5.22;
     use warnings;
     use utf8;
-    use experimental qw( autoderef lexical_subs lexical_topic postderef
-      regex_sets refaliasing signatures smartmatch );
+    use experimental qw( autoderef bitwise lexical_subs lexical_topic
+      postderef regex_sets refaliasing signatures smartmatch );
 
     # on perl v5.20
     use v5.20;
