@@ -4,7 +4,10 @@ package extreme;
 use strict;
 use warnings;
 
-require feature;
+BEGIN {
+    eval { require feature };
+}
+
 require utf8;
 require version;
 use Carp;
@@ -31,20 +34,33 @@ my %experiments_of = (
     5.016 => [qw( current_sub evalbytes fc unicode_eval )],
     5.018 => [qw( lexical_subs regex_sets )],
     5.020 => [qw( postderef postderef_qq signatures )],
-    5.022 => [qw( bitwise refaliasing )],
+    5.022 => [qw( bitwise const_attr refaliasing )],
+    5.026 => [qw( declared_refs )],
+    5.032 => [qw( isa )],
+    5.034 => [qw( try )],
+);
+
+my %removed_of = (
+    array_base    => 5.029004,
+    autoderef     => 5.023001,
+    lexical_topic => 5.023004,
 );
 
 sub import {
     shift;
-    my %opt = @_;
+    my %opt     = @_;
     my $version = exists $opt{version} ? version->parse( $opt{version} ) : $];
     strict->import();
     warnings->import();
     utf8->import() if !$opt{noutf8};
-    return if $version < 5.010;
+    return         if $version < 5.010;
     for my $min_version ( sort keys %experiments_of ) {
         last if $version < $min_version;
+      EXPERIMENT:
         for my $experiment ( @{ $experiments_of{$min_version} } ) {
+            next EXPERIMENT
+              if exists $removed_of{$experiment}
+              && $version >= $removed_of{$experiment};
             if ( $is_experimental{$experiment} ) {
                 warnings->unimport("experimental::$experiment");
                 push @enabled_experimentals, $experiment;
